@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/zxing_custom_result_view"
+    android:background="@color/Black"
     android:orientation="vertical">
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
@@ -23,13 +23,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
-            android:background="@color/zxing_status_text"/>
+            android:background="@color/White"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:background="@color/zxing_custom_result_view"
+            android:background="@color/Black"
             android:layout_centerInParent="true">
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="OR"
                 android:textSize="12sp"
-                android:textColor="@color/zxing_status_text"
+                android:textColor="@color/White"
                 />
 
         </LinearLayout>

@@ -5,6 +5,7 @@
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/scanner_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center_horizontal"/>
 </FrameLayout>

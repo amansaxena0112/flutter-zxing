@@ -4,6 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
+import android.widget.EditText
+import android.widget.RelativeLayout
+import android.widget.Toast
 import com.google.zxing.ResultPoint
 import com.google.zxing.client.android.BeepManager
 import com.google.zxing.client.android.Intents
@@ -14,6 +18,8 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView
 class CaptureActivity : Activity() {
     private var lastBarcode = "INVALID_STRING_STATE"
     private lateinit var scannerView: DecoratedBarcodeView
+    private var mobile_number: EditText ?= null
+    private var continue_button : RelativeLayout ?= null
     private val list = arrayListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +31,18 @@ class CaptureActivity : Activity() {
         var lastTime = System.currentTimeMillis()
         val beepManager = BeepManager(this)
         scannerView = findViewById(R.id.scanner_view)
+        mobile_number = findViewById(R.id.mobile_number)
+        continue_button = findViewById(R.id.continue_button)
+        continue_button!!.setOnClickListener({
+            var mobile_no = mobile_number!!.text.toString()
+            if (mobile_no.length < 10){
+                Toast.makeText(this,"Enter valid mobile number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            list.add(mobile_no)
+            setResult()
+            finish()
+        })
         scannerView.setStatusText("")
         list.clear()
 

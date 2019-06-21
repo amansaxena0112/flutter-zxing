@@ -36,7 +36,7 @@ class CaptureActivity : Activity() {
         continue_button!!.setOnClickListener({
             var mobile_no = mobile_number!!.text.toString()
             if (mobile_no.length < 10){
-                Toast.makeText(this,"Enter valid mobile number", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Enter 10 digit mobile number", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             list.add(mobile_no)
@@ -73,6 +73,7 @@ class CaptureActivity : Activity() {
                         if (isBeep) {
                             beepManager.playBeepSound()
                         }
+                        list.clear()
                         list.add(it)
                         setResult()
                         finish()

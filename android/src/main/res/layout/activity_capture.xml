@@ -127,20 +127,24 @@
             android:textColor="@color/White"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:layout_toStartOf="@id/continue_button"
             android:layout_centerVertical="true"
             android:layout_marginEnd="8dp"/>
 
-        <!--<android.support.design.widget.FloatingActionButton-->
-            <!--android:id="@+id/continue_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:fabSize="normal"-->
-            <!--app:elevation="5dp"-->
-            <!--app:borderWidth="0dp"-->
-            <!--android:scaleType="center"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:backgroundTint="#FF00B1DA"-->
-            <!--android:src="@drawable/arrow_forward"/>-->
+        <RelativeLayout
+            android:id="@+id/continue_button"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/rounded_corner">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/arrow_forward"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

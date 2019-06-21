@@ -5,6 +5,7 @@
   <application>
     <activity android:name=".CaptureActivity"
         android:configChanges="orientation|screenSize"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
   </application>
 </manifest>

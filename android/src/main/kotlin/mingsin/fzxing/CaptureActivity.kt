@@ -73,7 +73,6 @@ class CaptureActivity : Activity() {
                         if (isBeep) {
                             beepManager.playBeepSound()
                         }
-                        list.clear()
                         list.add(it)
                         setResult()
                         finish()

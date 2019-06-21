@@ -116,6 +116,7 @@
                     android:background="@null"
                     android:textColor="@color/White"
                     android:inputType="number"
+                    android:focusedByDefault="false"
                     android:maxLength="10"
                     android:textSize="14sp"
                     android:maxLines="1"

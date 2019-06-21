@@ -33,7 +33,7 @@ class CaptureActivity : Activity() {
         val isContinuous = intent.extras[keyIsContinuous] as Boolean
         val isBeep = intent.getBooleanExtra(Intents.Scan.BEEP_ENABLED, true)
         val interval = intent.extras[keyContinuousInterval] as? Int ?: 1000
-        val refNumber = intent.extras[keyRefNumber] as? List<String> ?: 1000
+        val refNumber = intent.extras[keyRefNumber] as? String ?: ""
         var lastTime = System.currentTimeMillis()
         val beepManager = BeepManager(this)
         scannerView = findViewById(R.id.scanner_view)
@@ -43,7 +43,7 @@ class CaptureActivity : Activity() {
         continue_button = findViewById(R.id.continue_button)
         bottom_layout = findViewById(R.id.bottom_layout)
         continuous_layout = findViewById(R.id.continuous_layout)
-        Toast.makeText(this,refNumber.toString(), Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,refNumber, Toast.LENGTH_SHORT).show()
         continue_button!!.setOnClickListener({
             var mobile_no = mobile_number!!.text.toString()
             if (mobile_no.length < 10){

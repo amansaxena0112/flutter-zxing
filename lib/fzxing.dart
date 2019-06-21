@@ -16,6 +16,6 @@ class Fzxing {
           ..['isBeep'] = isBeep
           ..['isContinuous'] = isContinuous
           ..['continuousInterval'] = continuousInterval);
-    return barcodes.map((it) => it as String);
+    return barcodes.map((it) => it as String).toList();
   }
 }

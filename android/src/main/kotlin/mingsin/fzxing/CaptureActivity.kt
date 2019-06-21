@@ -19,8 +19,13 @@ class CaptureActivity : Activity() {
     private var lastBarcode = "INVALID_STRING_STATE"
     private lateinit var scannerView: DecoratedBarcodeView
     private var mobile_number: EditText ?= null
+    private var scanned_items: EditText ?= null
+    private var total_items: EditText ?= null
     private var continue_button : RelativeLayout ?= null
+    private var bottom_layout : RelativeLayout ?= null
+    private var continuous_layout : RelativeLayout ?= null
     private val list = arrayListOf<String>()
+    private val listnew = listOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +33,17 @@ class CaptureActivity : Activity() {
         val isContinuous = intent.extras[keyIsContinuous] as Boolean
         val isBeep = intent.getBooleanExtra(Intents.Scan.BEEP_ENABLED, true)
         val interval = intent.extras[keyContinuousInterval] as? Int ?: 1000
+        val refNumber = intent.extras[keyRefNumber] as? List<String> ?: 1000
         var lastTime = System.currentTimeMillis()
         val beepManager = BeepManager(this)
         scannerView = findViewById(R.id.scanner_view)
+        scanned_items = findViewById(R.id.scanned_items)
         mobile_number = findViewById(R.id.mobile_number)
+        total_items = findViewById(R.id.total_items)
         continue_button = findViewById(R.id.continue_button)
+        bottom_layout = findViewById(R.id.bottom_layout)
+        continuous_layout = findViewById(R.id.continuous_layout)
+        Toast.makeText(this,refNumber.toString(), Toast.LENGTH_SHORT).show()
         continue_button!!.setOnClickListener({
             var mobile_no = mobile_number!!.text.toString()
             if (mobile_no.length < 10){
@@ -43,6 +54,10 @@ class CaptureActivity : Activity() {
             setResult()
             finish()
         })
+        if (isContinuous){
+            bottom_layout!!.visibility = View.GONE
+            continuous_layout!!.visibility = View.VISIBLE
+        }
         scannerView.setStatusText("")
         list.clear()
 

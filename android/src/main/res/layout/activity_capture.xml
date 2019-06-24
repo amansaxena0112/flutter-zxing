@@ -44,7 +44,8 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:layout_below="@id/app_bar"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_marginBottom="50dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -183,6 +184,7 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
                         android:focusedByDefault="true"
+                        android:focusableInTouchMode="true"
                         android:focusable="true"
                         android:background="@drawable/edit_bg"
                         android:paddingStart="5dp">

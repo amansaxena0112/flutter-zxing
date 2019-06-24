@@ -102,18 +102,19 @@ class CaptureActivity : Activity() {
             scannerView.decodeContinuous(object : BarcodeCallback {
                 override fun barcodeResult(result: BarcodeResult?) {
                     result?.text?.let {
+                        val now = System.currentTimeMillis()
+                        if (now - lastTime < interval && lastBarcode == it) {
+                            //Toast.makeText(this@CaptureActivity, "Item already added", Toast.LENGTH_SHORT).show()
+                            return
+                        }
+                        lastBarcode = it
+                        lastTime = System.currentTimeMillis()
                         if(results.contains(it) && !list.contains(it)) {
-                            val now = System.currentTimeMillis()
-                            if (now - lastTime < interval && lastBarcode == it) {
-                                //Toast.makeText(this@CaptureActivity, "Item already added", Toast.LENGTH_SHORT).show()
-                                return
-                            }
+
                             if (isBeep) {
                                 beepManager.playBeepSound()
                             }
-                            lastBarcode = it
                             list.add(it)
-                            lastTime = System.currentTimeMillis()
                             scanned_items!!.text = list.size.toString()
                         }else{
                             Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()

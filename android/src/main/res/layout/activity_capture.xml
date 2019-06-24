@@ -42,10 +42,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/button_layout"
+        android:layout_marginBottom="10dp"
         android:fitsSystemWindows="true"
         android:layout_below="@id/app_bar"
-        android:fillViewport="true"
-        android:layout_marginBottom="50dp">
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -284,45 +285,47 @@
 
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CONTINUE"
-                        android:textColor="@color/White"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_toStartOf="@id/continue_button"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="8dp"/>
-
-                    <RelativeLayout
-                        android:id="@+id/continue_button"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/rounded_corner">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:background="@drawable/arrow_forward"/>
-
-                    </RelativeLayout>
-
-                    </RelativeLayout>
-
                 </RelativeLayout>
 
         </RelativeLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTINUE"
+            android:textColor="@color/White"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_toStartOf="@id/continue_button"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="8dp"/>
+
+        <RelativeLayout
+            android:id="@+id/continue_button"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/rounded_corner">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/arrow_forward"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>

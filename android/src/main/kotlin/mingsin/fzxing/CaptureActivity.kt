@@ -79,6 +79,7 @@ class CaptureActivity : Activity() {
             number_layout!!.visibility = View.GONE
             barcode_layout!!.visibility = View.VISIBLE
             items_layout!!.visibility = View.VISIBLE
+            total_items!!.setText(result.size)
         }
 
         add_button!!.setOnClickListener({
@@ -103,7 +104,7 @@ class CaptureActivity : Activity() {
                         if(formatedRefNumber.contains(it)) {
                             val now = System.currentTimeMillis()
                             if (now - lastTime < interval && lastBarcode == it) {
-                                Toast.makeText(this@CaptureActivity, "Item already added", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(this@CaptureActivity, "Item already added", Toast.LENGTH_SHORT).show()
                                 return
                             }
                             if (isBeep) {
@@ -112,6 +113,7 @@ class CaptureActivity : Activity() {
                             lastBarcode = it
                             list.add(it)
                             lastTime = System.currentTimeMillis()
+                            scanned_items!!.setText(list.size);
                         }else{
                             Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
                         }

@@ -79,8 +79,8 @@ class CaptureActivity : Activity() {
             number_layout!!.visibility = View.GONE
             barcode_layout!!.visibility = View.VISIBLE
             items_layout!!.visibility = View.VISIBLE
-            //total_items!!.setText(result.size)
-            scanned_items!!.setText(list.size)
+            total_items!!.text = result.size.toString()
+            scanned_items!!.text = list.size.toString()
         }
 
         add_button!!.setOnClickListener({
@@ -114,7 +114,7 @@ class CaptureActivity : Activity() {
                             lastBarcode = it
                             list.add(it)
                             lastTime = System.currentTimeMillis()
-                            scanned_items!!.setText(list.size);
+                            scanned_items!!.text = list.size.toString()
                         }else{
                             Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
                         }

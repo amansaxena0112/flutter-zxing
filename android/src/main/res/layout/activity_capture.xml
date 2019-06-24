@@ -237,6 +237,7 @@
                             android:paddingStart="5dp"
                             android:layout_weight="4"
                             android:focusable="true"
+                            android:layout_marginEnd="10dp"
                             android:focusableInTouchMode="true"
                             android:focusedByDefault="true">
 
@@ -259,7 +260,6 @@
                             android:id="@+id/add_button"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="10dp"
                             android:layout_weight="1"
                             android:background="@drawable/rounded_bg"
                             android:padding="5dp"

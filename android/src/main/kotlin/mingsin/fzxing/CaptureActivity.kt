@@ -43,7 +43,10 @@ class CaptureActivity : Activity() {
         continue_button = findViewById(R.id.continue_button)
         bottom_layout = findViewById(R.id.bottom_layout)
         continuous_layout = findViewById(R.id.continuous_layout)
-        Toast.makeText(this,refNumber, Toast.LENGTH_SHORT).show()
+        var result: List<String> = refNumber.split(",").map { it.trim() }
+        result.forEach {
+            Toast.makeText(this,it, Toast.LENGTH_SHORT).show()
+        }
         continue_button!!.setOnClickListener({
             var mobile_no = mobile_number!!.text.toString()
             if (mobile_no.length < 10){

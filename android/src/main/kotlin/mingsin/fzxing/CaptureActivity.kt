@@ -102,7 +102,7 @@ class CaptureActivity : Activity() {
             scannerView.decodeContinuous(object : BarcodeCallback {
                 override fun barcodeResult(result: BarcodeResult?) {
                     result?.text?.let {
-                        if(formatedRefNumber.contains(it)) {
+                        if(formatedRefNumber.contains(it) && !list.contains(it)) {
                             val now = System.currentTimeMillis()
                             if (now - lastTime < interval && lastBarcode == it) {
                                 //Toast.makeText(this@CaptureActivity, "Item already added", Toast.LENGTH_SHORT).show()

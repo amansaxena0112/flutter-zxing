@@ -23,6 +23,7 @@ class CaptureActivity : Activity() {
     private var scanned_items: TextView ?= null
     private var items_layout: LinearLayout ?= null
     private var add_button: LinearLayout ?= null
+    private var back_layout: LinearLayout ?= null
     private var number_layout: LinearLayout ?= null
     private var barcode_layout: LinearLayout ?= null
     private var continue_button : RelativeLayout ?= null
@@ -50,12 +51,18 @@ class CaptureActivity : Activity() {
         number_layout = findViewById(R.id.number_layout)
         barcode_layout = findViewById(R.id.barcode_layout)
         add_button = findViewById(R.id.add_button)
+        back_layout = findViewById(R.id.back_layout)
         var formatRefNumber = refNumber.replace("[","")
         var formatedRefNumber = formatRefNumber.replace("]","")
         var result: List<String> = formatedRefNumber.split(",").map { it.trim() }
         result.forEach {
             Toast.makeText(this,it, Toast.LENGTH_SHORT).show()
         }
+
+        back_layout!!.setOnClickListener({
+            finish()
+        })
+
         continue_button!!.setOnClickListener({
             if (!isContinuous) {
                 var mobile_no = mobile_number!!.text.toString()
@@ -69,7 +76,7 @@ class CaptureActivity : Activity() {
             finish()
         })
         if (isContinuous){
-            bottom_layout!!.visibility = View.GONE
+            number_layout!!.visibility = View.GONE
             barcode_layout!!.visibility = View.VISIBLE
             items_layout!!.visibility = View.VISIBLE
         }

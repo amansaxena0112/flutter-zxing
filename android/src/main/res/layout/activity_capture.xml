@@ -42,14 +42,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:layout_below="@id/app_bar"
         android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusedByDefault="true">
+            android:layout_height="wrap_content">
 
             <com.journeyapps.barcodescanner.DecoratedBarcodeView
                 android:id="@+id/scanner_view"
@@ -183,6 +182,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="5dp"
+                        android:focusedByDefault="true"
+                        android:focusable="true"
                         android:background="@drawable/edit_bg"
                         android:paddingStart="5dp">
 

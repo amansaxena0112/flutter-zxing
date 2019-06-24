@@ -30,6 +30,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SCAN DRIVER QR CODE"
@@ -42,7 +43,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/app_bar">
+        android:layout_below="@id/app_bar"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -60,84 +62,226 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/scanner_view"
-                android:layout_marginTop="42dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="29dp"
                 android:layout_marginRight="29dp">
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/or_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_centerVertical="true"
-                        android:background="@color/White"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:id="@+id/items_layout"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:background="@color/Black"
-                        android:layout_centerInParent="true">
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:visibility="gone"
+                        android:layout_marginBottom="20dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="OR"
-                            android:textSize="12sp"
-                            android:textColor="@color/White"
-                            />
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/scanned_items"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="09"
+                                android:textSize="28sp"
+                                android:textStyle="bold"
+                                android:textColor="#FF00B1DA"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Items Scanned"
+                                android:textColor="@color/White"
+                                android:textSize="14sp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/total_items"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="12"
+                                android:textSize="28sp"
+                                android:textStyle="bold"
+                                android:textColor="#FF00B1DA"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Items"
+                                android:textColor="@color/White"
+                                android:textSize="14sp"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
-                </RelativeLayout>
 
-                <TextView
-                    android:layout_below="@id/or_view"
-                    android:id="@+id/mobile_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mobile no."
-                    android:textColor="@color/White"
-                    android:layout_marginLeft="29dp"
-                    android:layout_marginTop="10dp"/>
-
-                <RelativeLayout
-                    android:id="@+id/number_layout"
-                    android:layout_below="@id/mobile_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="29dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="29dp"
-                    android:background="@drawable/edit_bg"
-                    android:paddingStart="5dp">
-
-                    <EditText
-                        android:id="@+id/mobile_number"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:textColor="@color/White"
-                        android:inputType="number"
-                        android:focusedByDefault="false"
-                        android:maxLength="10"
-                        android:textSize="14sp"
-                        android:maxLines="1"
-                        android:singleLine="true" />
+                        android:layout_height="wrap_content">
 
-                </RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_centerVertical="true"
+                            android:background="@color/White"/>
 
-                <RelativeLayout
-                    android:layout_below="@id/number_layout"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:background="@color/Black"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="OR"
+                                android:textSize="12sp"
+                                android:textColor="@color/White"
+                                />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/number_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="29dp"
-                    android:layout_marginRight="29dp"
+                    android:orientation="vertical"
+                    android:layout_below="@id/or_view">
+
+                    <TextView
+                        android:id="@+id/mobile_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile no."
+                        android:textColor="@color/White"
+                        android:layout_marginTop="10dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/edit_bg"
+                        android:paddingStart="5dp">
+
+                        <EditText
+                            android:id="@+id/mobile_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:textColor="@color/White"
+                            android:inputType="number"
+                            android:focusedByDefault="false"
+                            android:maxLength="10"
+                            android:textSize="14sp"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/barcode_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_below="@id/or_view"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/barcode_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Barcode no."
+                        android:textColor="@color/White"
+                        android:layout_marginTop="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:weightSum="5">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/edit_bg"
+                            android:paddingStart="5dp"
+                            android:layout_weight="4">
+
+                            <EditText
+                                android:id="@+id/barcode_number"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:textColor="@color/White"
+                                android:inputType="number"
+                                android:focusedByDefault="false"
+                                android:maxLength="10"
+                                android:textSize="14sp"
+                                android:maxLines="1"
+                                android:singleLine="true" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:id="@+id/add_button"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_bg"
+                            android:padding="5dp"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/icon_add"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ADD"
+                                android:textColor="@color/White"
+                                android:textSize="14sp"
+                                android:textStyle="bold"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="29dp"
                     android:layout_marginBottom="20dp">
 
                     <TextView
@@ -169,182 +313,6 @@
                     </RelativeLayout>
 
                 </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/continuous_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/scanner_view"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="29dp"
-                android:layout_marginEnd="29dp"
-                android:visibility="gone">
-
-                <LinearLayout
-                    android:id="@+id/items_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <EditText
-                            android:id="@+id/scanned_items"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="09"
-                            android:textSize="28sp"
-                            android:textStyle="bold"
-                            android:textColor="#FF00B1DA"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Items Scanned"
-                            android:textColor="@color/White"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <EditText
-                            android:id="@+id/total_items"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="12"
-                            android:textSize="28sp"
-                            android:textStyle="bold"
-                            android:textColor="#FF00B1DA"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Total Items"
-                            android:textColor="@color/White"
-                            android:textSize="14sp"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/view_or"
-                    android:layout_below="@id/items_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_centerVertical="true"
-                        android:background="@color/White"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:background="@color/Black"
-                        android:layout_centerInParent="true">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="OR"
-                            android:textSize="12sp"
-                            android:textColor="@color/White"
-                            />
-
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_below="@id/view_or"
-                    android:id="@+id/barcode_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Barcode no."
-                    android:textColor="@color/White"
-                    android:layout_marginLeft="29dp"
-                    android:layout_marginTop="10dp"/>
-
-                <RelativeLayout
-                    android:id="@+id/barcode_layout"
-                    android:layout_below="@id/barcode_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="29dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="29dp"
-                    android:background="@drawable/edit_bg"
-                    android:paddingStart="5dp">
-
-                    <EditText
-                        android:id="@+id/barcode_number"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:textColor="@color/White"
-                        android:inputType="number"
-                        android:focusedByDefault="false"
-                        android:maxLength="10"
-                        android:textSize="14sp"
-                        android:maxLines="1"
-                        android:singleLine="true" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_below="@id/barcode_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="29dp"
-                    android:layout_marginRight="29dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="29dp"
-                    android:layout_marginBottom="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CONTINUE"
-                        android:textColor="@color/White"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_toStartOf="@id/continue_button2"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="8dp"/>
-
-                    <RelativeLayout
-                        android:id="@+id/continue_button2"
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/rounded_corner">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:background="@drawable/arrow_forward"/>
-
-                    </RelativeLayout>
-
-                </RelativeLayout>
-
-            </RelativeLayout>
 
         </RelativeLayout>
 

@@ -79,7 +79,7 @@ class CaptureActivity : Activity() {
             number_layout!!.visibility = View.GONE
             barcode_layout!!.visibility = View.VISIBLE
             items_layout!!.visibility = View.VISIBLE
-            total_items!!.setText(result.size)
+            //total_items!!.setText(result.size)
             scanned_items!!.setText(list.size)
         }
 

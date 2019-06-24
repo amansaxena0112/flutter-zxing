@@ -55,9 +55,6 @@ class CaptureActivity : Activity() {
         var formatRefNumber = refNumber.replace("[","")
         var formatedRefNumber = formatRefNumber.replace("]","")
         var results: List<String> = formatedRefNumber.split(",").map { it.trim() }
-        results.forEach {
-            Toast.makeText(this,it, Toast.LENGTH_SHORT).show()
-        }
 
         back_layout!!.setOnClickListener({
             finish()
@@ -81,6 +78,7 @@ class CaptureActivity : Activity() {
             items_layout!!.visibility = View.VISIBLE
             total_items!!.text = results.size.toString()
             scanned_items!!.text = list.size.toString()
+            title_text!!.text = "SCAN ITEMS"
         }
 
         add_button!!.setOnClickListener({

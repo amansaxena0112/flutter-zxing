@@ -54,8 +54,8 @@ class CaptureActivity : Activity() {
         back_layout = findViewById(R.id.back_layout)
         var formatRefNumber = refNumber.replace("[","")
         var formatedRefNumber = formatRefNumber.replace("]","")
-        var result: List<String> = formatedRefNumber.split(",").map { it.trim() }
-        result.forEach {
+        var results: List<String> = formatedRefNumber.split(",").map { it.trim() }
+        results.forEach {
             Toast.makeText(this,it, Toast.LENGTH_SHORT).show()
         }
 
@@ -79,7 +79,7 @@ class CaptureActivity : Activity() {
             number_layout!!.visibility = View.GONE
             barcode_layout!!.visibility = View.VISIBLE
             items_layout!!.visibility = View.VISIBLE
-            total_items!!.text = result.size.toString()
+            total_items!!.text = results.size.toString()
             scanned_items!!.text = list.size.toString()
         }
 
@@ -102,7 +102,7 @@ class CaptureActivity : Activity() {
             scannerView.decodeContinuous(object : BarcodeCallback {
                 override fun barcodeResult(result: BarcodeResult?) {
                     result?.text?.let {
-                        if(result.equals(it) && !list.contains(it)) {
+                        if(results.contains(it) && !list.contains(it)) {
                             val now = System.currentTimeMillis()
                             if (now - lastTime < interval && lastBarcode == it) {
                                 //Toast.makeText(this@CaptureActivity, "Item already added", Toast.LENGTH_SHORT).show()

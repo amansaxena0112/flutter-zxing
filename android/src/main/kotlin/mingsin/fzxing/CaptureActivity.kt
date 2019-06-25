@@ -29,6 +29,7 @@ class CaptureActivity : Activity() {
     private var continue_button : RelativeLayout ?= null
     private var bottom_layout : RelativeLayout ?= null
     private val list = arrayListOf<String>()
+    private val scannedResult = arrayListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +59,13 @@ class CaptureActivity : Activity() {
         var formatedRefNumber = formatRefNumber.replace("]","")
         var formatedScannedNumber = formatScannedNumber.replace("]","")
         var results: List<String> = formatedRefNumber.split(",").map { it.trim() }
-        var scannedResults: List<String> = formatedScannedNumber.split(",").map { it.trim() }
+        var scannedResults : List<String>
+        if (scannedNumber.contains(",")){
+            scannedResults = formatedScannedNumber.split(",").map { it.trim() }
+        }else{
+            scannedResult.add(scannedNumber)
+            scannedResults = scannedResult
+        }
 
         back_layout!!.setOnClickListener({
             finish()
@@ -83,9 +90,7 @@ class CaptureActivity : Activity() {
             items_layout!!.visibility = View.VISIBLE
             total_items!!.text = results.size.toString()
             scannedResults.forEach({
-                if (!it.equals("")){
-                    list.add(it)
-                }
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             })
             list.forEach({
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
@@ -96,7 +101,7 @@ class CaptureActivity : Activity() {
 
         add_button!!.setOnClickListener({
             var barcodeNumber = barcode_number!!.text.toString()
-            if(formatedRefNumber.contains(barcodeNumber)  && lastBarcode != barcodeNumber) {
+            if(formatedRefNumber.contains(barcodeNumber)  && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
                 if (isBeep) {
                     beepManager.playBeepSound()
                 }

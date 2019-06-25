@@ -9,6 +9,7 @@ class Fzxing {
     bool isContinuous = false,
     int continuousInterval = 1000,
     List<String> refNumber,
+    List<String> scannedRefNumber,
   }) async {
     final List barcodes = await _channel.invokeMethod(
         'scan',
@@ -16,7 +17,8 @@ class Fzxing {
           ..['isBeep'] = isBeep
           ..['isContinuous'] = isContinuous
           ..['continuousInterval'] = continuousInterval
-          ..['refNumber'] = refNumber);
+          ..['refNumber'] = refNumber
+          ..['scannedRefNumber'] = scannedRefNumber);
     return barcodes.map((it) => it as String).toList();
   }
 }

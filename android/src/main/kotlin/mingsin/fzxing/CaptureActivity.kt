@@ -91,7 +91,7 @@ class CaptureActivity : Activity() {
             items_layout!!.visibility = View.VISIBLE
             total_items!!.text = results.size.toString()
             scannedResults.forEach({
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                list.add(it)
             })
             list.forEach({
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()

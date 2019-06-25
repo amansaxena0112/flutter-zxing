@@ -38,7 +38,7 @@ class CaptureActivity : Activity() {
         val isBeep = intent.getBooleanExtra(Intents.Scan.BEEP_ENABLED, true)
         val interval = intent.extras[keyContinuousInterval] as? Int ?: 1000
         val refNumber = intent.extras[keyRefNumber] as String
-        val scannedNumber = intent.extras[keyScannedNumber] as String
+            val scannedNumber = intent.extras[keyScannedNumber] as String
         var lastTime = System.currentTimeMillis()
         val beepManager = BeepManager(this)
         scannerView = findViewById(R.id.scanner_view)
@@ -54,6 +54,7 @@ class CaptureActivity : Activity() {
         barcode_layout = findViewById(R.id.barcode_layout)
         add_button = findViewById(R.id.add_button)
         back_layout = findViewById(R.id.back_layout)
+        Toast.makeText(this, scannedNumber, Toast.LENGTH_SHORT).show()
         var formatRefNumber = refNumber.replace("[","")
         var formatScannedNumber = scannedNumber.replace("[","")
         var formatedRefNumber = formatRefNumber.replace("]","")
@@ -90,9 +91,9 @@ class CaptureActivity : Activity() {
             barcode_layout!!.visibility = View.VISIBLE
             items_layout!!.visibility = View.VISIBLE
             total_items!!.text = results.size.toString()
-            scannedResults.forEach({
-                list.add(it)
-            })
+//            scannedResults.forEach({
+//                list.add(it)
+//            })
             list.forEach({
                 Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             })

@@ -54,20 +54,12 @@ class CaptureActivity : Activity() {
         barcode_layout = findViewById(R.id.barcode_layout)
         add_button = findViewById(R.id.add_button)
         back_layout = findViewById(R.id.back_layout)
-        //Toast.makeText(this, scannedNumber, Toast.LENGTH_SHORT).show()
         var formatRefNumber = refNumber.replace("[","")
         var formatScannedNumber = scannedNumber.replace("[","")
         var formatedRefNumber = formatRefNumber.replace("]","")
         var formatedScannedNumber = formatScannedNumber.replace("]","")
         var results: List<String> = formatedRefNumber.split(",").map { it.trim() }
-        //Toast.makeText(this, formatedScannedNumber, Toast.LENGTH_SHORT).show()
         var scannedResults : List<String> = formatedScannedNumber.split(",").map { it.trim() }
-//        if (formatedScannedNumber.contains(",")){
-//            scannedResults = formatedScannedNumber.split(",").map { it.trim() }
-//        }else{
-//            scannedResult.add(formatedScannedNumber)
-//            scannedResults = scannedResult
-//        }
 
         back_layout!!.setOnClickListener({
             finish()
@@ -95,9 +87,6 @@ class CaptureActivity : Activity() {
                 if (!it.equals("")) {
                     list.add(it)
                 }
-            })
-            list.forEach({
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             })
             scanned_items!!.text = list.size.toString()
             title_text!!.text = "SCAN ITEMS"

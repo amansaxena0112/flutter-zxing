@@ -83,6 +83,9 @@ class CaptureActivity : Activity() {
             items_layout!!.visibility = View.VISIBLE
             total_items!!.text = results.size.toString()
             list.addAll(scannedResults)
+            list.forEach({
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            })
             scanned_items!!.text = list.size.toString()
             title_text!!.text = "SCAN ITEMS"
         }

@@ -37,6 +37,7 @@ class CaptureActivity : Activity() {
         val isBeep = intent.getBooleanExtra(Intents.Scan.BEEP_ENABLED, true)
         val interval = intent.extras[keyContinuousInterval] as? Int ?: 1000
         val refNumber = intent.extras[keyRefNumber] as? String ?: ""
+        val scannedNumber = intent.extras[keyScannedNumber] as? String ?: ""
         var lastTime = System.currentTimeMillis()
         val beepManager = BeepManager(this)
         scannerView = findViewById(R.id.scanner_view)
@@ -53,8 +54,11 @@ class CaptureActivity : Activity() {
         add_button = findViewById(R.id.add_button)
         back_layout = findViewById(R.id.back_layout)
         var formatRefNumber = refNumber.replace("[","")
+        var formatScannedNumber = scannedNumber.replace("[","")
         var formatedRefNumber = formatRefNumber.replace("]","")
+        var formatedScannedNumber = formatScannedNumber.replace("]","")
         var results: List<String> = formatedRefNumber.split(",").map { it.trim() }
+        var scannedResults: List<String> = formatedScannedNumber.split(",").map { it.trim() }
 
         back_layout!!.setOnClickListener({
             finish()
@@ -72,6 +76,8 @@ class CaptureActivity : Activity() {
             setResult()
             finish()
         })
+        list.clear()
+        list.addAll(scannedResults)
         if (isContinuous){
             number_layout!!.visibility = View.GONE
             barcode_layout!!.visibility = View.VISIBLE
@@ -94,7 +100,6 @@ class CaptureActivity : Activity() {
             }
         })
         scannerView.setStatusText("")
-        list.clear()
 
         if (isContinuous) {
             scannerView.decodeContinuous(object : BarcodeCallback {

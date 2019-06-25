@@ -48,7 +48,7 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
         val scanInterval = argumentsMap[keyContinuousInterval] as? Int ?: 1000
         val refNumber = argumentsMap[keyRefNumber] as? List<String> ?: 1000
         val scannedNumber = argumentsMap[keyScannedNumber] as? List<String> ?: 1000
-        val config = Config(isBeep, isContinuous, scanInterval, refNumber.toString())
+        val config = Config(isBeep, isContinuous, scanInterval, refNumber.toString(),scannedNumber.toString())
         Log.d(keyIsBeep, isBeep.toString())
         Log.d(keyIsContinuous, isContinuous.toString())
         startCapture(config, result)

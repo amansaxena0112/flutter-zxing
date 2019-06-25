@@ -18,7 +18,7 @@ const val keyScan = "scan"
 const val keyIsBeep = "isBeep"
 const val keyContinuousInterval = "continuousInterval"
 const val keyRefNumber = "refNumber"
-const val keyScannedNumber = "scannedNumber"
+const val keyScannedNumber = "scannedRefNumber"
 
 class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
 

@@ -83,6 +83,10 @@ class CaptureActivity : Activity() {
             barcode_layout!!.visibility = View.VISIBLE
             items_layout!!.visibility = View.VISIBLE
             total_items!!.text = results.size.toString()
+            Toast.makeText(this, list.size.toString(), Toast.LENGTH_SHORT).show()
+            list.forEach({
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            })
             scanned_items!!.text = list.size.toString()
             title_text!!.text = "SCAN ITEMS"
         }

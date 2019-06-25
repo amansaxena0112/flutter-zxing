@@ -59,12 +59,12 @@ class CaptureActivity : Activity() {
         var formatedRefNumber = formatRefNumber.replace("]","")
         var formatedScannedNumber = formatScannedNumber.replace("]","")
         var results: List<String> = formatedRefNumber.split(",").map { it.trim() }
-        Toast.makeText(this, scannedNumber, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, formatedScannedNumber, Toast.LENGTH_SHORT).show()
         var scannedResults : List<String>
-        if (scannedNumber.contains(",")){
+        if (formatedScannedNumber.contains(",")){
             scannedResults = formatedScannedNumber.split(",").map { it.trim() }
         }else{
-            scannedResult.add(scannedNumber)
+            scannedResult.add(formatedScannedNumber)
             scannedResults = scannedResult
         }
 

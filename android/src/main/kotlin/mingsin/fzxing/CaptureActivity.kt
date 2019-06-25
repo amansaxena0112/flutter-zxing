@@ -37,8 +37,8 @@ class CaptureActivity : Activity() {
         val isContinuous = intent.extras[keyIsContinuous] as Boolean
         val isBeep = intent.getBooleanExtra(Intents.Scan.BEEP_ENABLED, true)
         val interval = intent.extras[keyContinuousInterval] as? Int ?: 1000
-        val refNumber = intent.extras[keyRefNumber] as? String ?: ""
-        val scannedNumber = intent.extras[keyScannedNumber] as? String ?: ""
+        val refNumber = intent.extras[keyRefNumber] as String
+        val scannedNumber = intent.extras[keyScannedNumber] as String
         var lastTime = System.currentTimeMillis()
         val beepManager = BeepManager(this)
         scannerView = findViewById(R.id.scanner_view)

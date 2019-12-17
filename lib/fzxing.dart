@@ -7,6 +7,7 @@ class Fzxing {
   static Future<List<String>> scan({
     bool isBeep = true,
     bool isContinuous = false,
+    bool isShipment = false,
     int continuousInterval = 1000,
     List<String> refNumber,
     List<String> scannedRefNumber,
@@ -16,6 +17,7 @@ class Fzxing {
         Map()
           ..['isBeep'] = isBeep
           ..['isContinuous'] = isContinuous
+          ..['isShipment'] = isShipment
           ..['continuousInterval'] = continuousInterval
           ..['refNumber'] = refNumber
           ..['scannedRefNumber'] = scannedRefNumber);

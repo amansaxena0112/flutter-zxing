@@ -14,6 +14,7 @@ import io.flutter.plugin.common.PluginRegistry
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
 const val keyIsContinuous = "isContinuous"
+const val keyIsShipment = "isShipment"
 const val keyScan = "scan"
 const val keyIsBeep = "isBeep"
 const val keyContinuousInterval = "continuousInterval"
@@ -45,12 +46,14 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
         val argumentsMap = call.arguments as Map<*, *>
         val isBeep = argumentsMap[keyIsBeep] as? Boolean ?: true
         val isContinuous = argumentsMap[keyIsContinuous] as? Boolean ?: false
+        val isShipment = argumentsMap[keyIsShipment] as? Boolean ?: false
         val scanInterval = argumentsMap[keyContinuousInterval] as? Int ?: 1000
         val refNumber = argumentsMap[keyRefNumber] as? List<String> ?: ""
         val scannedNumber = argumentsMap[keyScannedNumber] as? List<String> ?: ""
-        val config = Config(isBeep, isContinuous, scanInterval, refNumber.toString(),scannedNumber.toString())
+        val config = Config(isBeep, isContinuous, isShipment , scanInterval, refNumber.toString(),scannedNumber.toString())
         Log.d(keyIsBeep, isBeep.toString())
         Log.d(keyIsContinuous, isContinuous.toString())
+        Log.d(keyIsShipment, isShipment.toString())
         Log.d(keyScannedNumber, scannedNumber.toString())
         Log.d(keyScannedNumber, argumentsMap.toString())
         startCapture(config, result)
@@ -75,15 +78,27 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
         }
         listener.result = result
 
-        IntentIntegrator(activity)
-                .setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES)
-                .setCaptureActivity(CaptureActivity::class.java)
-                .setBeepEnabled(config.isBeep)
-                .addExtra(keyIsContinuous, config.isContinuous)
-                .addExtra(keyContinuousInterval, config.scanInterval)
-                .addExtra(keyRefNumber, config.refNumber)
-                .addExtra(keyScannedNumber, config.scannedNumber)
-                .initiateScan()
+        if (config.isShipment){
+            IntentIntegrator(activity)
+                    .setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES)
+                    .setCaptureActivity(ShipmentCaptureActivity::class.java)
+                    .setBeepEnabled(config.isBeep)
+                    .addExtra(keyIsContinuous, config.isContinuous)
+                    .addExtra(keyContinuousInterval, config.scanInterval)
+                    .addExtra(keyRefNumber, config.refNumber)
+                    .addExtra(keyScannedNumber, config.scannedNumber)
+                    .initiateScan()
+        }else {
+            IntentIntegrator(activity)
+                    .setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES)
+                    .setCaptureActivity(CaptureActivity::class.java)
+                    .setBeepEnabled(config.isBeep)
+                    .addExtra(keyIsContinuous, config.isContinuous)
+                    .addExtra(keyContinuousInterval, config.scanInterval)
+                    .addExtra(keyRefNumber, config.refNumber)
+                    .addExtra(keyScannedNumber, config.scannedNumber)
+                    .initiateScan()
+        }
     }
 
     private val listener = object : PluginRegistry.ActivityResultListener {
@@ -96,6 +111,6 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
 
     }
 
-    internal data class Config(val isBeep: Boolean, val isContinuous: Boolean, val scanInterval: Int, val refNumber: String, val scannedNumber: String)
+    internal data class Config(val isBeep: Boolean, val isContinuous: Boolean, val isShipment: Boolean, val scanInterval: Int, val refNumber: String, val scannedNumber: String)
 
 }

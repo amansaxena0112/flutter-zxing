@@ -5,5 +5,8 @@
     <activity android:name=".CaptureActivity"
         android:theme="@android:style/Theme.NoTitleBar"
         android:windowSoftInputMode="adjustResize"/>
+    <activity android:name=".ShipmentCaptureActivity"
+        android:theme="@android:style/Theme.NoTitleBar"
+        android:windowSoftInputMode="adjustResize"/>
   </application>
 </manifest>

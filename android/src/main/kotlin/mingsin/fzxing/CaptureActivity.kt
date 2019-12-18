@@ -33,7 +33,7 @@ class CaptureActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_shipment_capture)
+        setContentView(R.layout.activity_capture)
         val isContinuous = intent.extras[keyIsContinuous] as Boolean
         val isBeep = intent.getBooleanExtra(Intents.Scan.BEEP_ENABLED, true)
         val interval = intent.extras[keyContinuousInterval] as? Int ?: 1000

@@ -16,18 +16,18 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView
 class CaptureActivity : Activity() {
     private var lastBarcode = "INVALID_STRING_STATE"
     private lateinit var scannerView: DecoratedBarcodeView
-    private var mobile_number: EditText ?= null
-    private var barcode_number: EditText ?= null
-    private var total_items: TextView ?= null
-    private var title_text: TextView ?= null
-    private var scanned_items: TextView ?= null
-    private var items_layout: LinearLayout ?= null
-    private var add_button: LinearLayout ?= null
-    private var back_layout: LinearLayout ?= null
-    private var number_layout: LinearLayout ?= null
-    private var barcode_layout: LinearLayout ?= null
-    private var continue_button : RelativeLayout ?= null
-    private var bottom_layout : RelativeLayout ?= null
+    private var mobile_number: EditText ? = null
+    private var barcode_number: EditText ? = null
+    private var total_items: TextView ? = null
+    private var title_text: TextView ? = null
+    private var scanned_items: TextView ? = null
+    private var items_layout: LinearLayout ? = null
+    private var add_button: LinearLayout ? = null
+    private var back_layout: LinearLayout ? = null
+    private var number_layout: LinearLayout ? = null
+    private var barcode_layout: LinearLayout ? = null
+    private var continue_button: RelativeLayout ? = null
+    private var bottom_layout: RelativeLayout ? = null
     private val list = arrayListOf<String>()
     private val scannedResult = arrayListOf<String>()
 
@@ -54,12 +54,12 @@ class CaptureActivity : Activity() {
         barcode_layout = findViewById(R.id.barcode_layout)
         add_button = findViewById(R.id.add_button)
         back_layout = findViewById(R.id.back_layout)
-        var formatRefNumber = refNumber.replace("[","")
-        var formatScannedNumber = scannedNumber.replace("[","")
-        var formatedRefNumber = formatRefNumber.replace("]","")
-        var formatedScannedNumber = formatScannedNumber.replace("]","")
+        var formatRefNumber = refNumber.replace("[", "")
+        var formatScannedNumber = scannedNumber.replace("[", "")
+        var formatedRefNumber = formatRefNumber.replace("]", "")
+        var formatedScannedNumber = formatScannedNumber.replace("]", "")
         var results: List<String> = formatedRefNumber.split(",").map { it.trim() }
-        var scannedResults : List<String> = formatedScannedNumber.split(",").map { it.trim() }
+        var scannedResults: List<String> = formatedScannedNumber.split(",").map { it.trim() }
 
         back_layout!!.setOnClickListener({
             finish()
@@ -78,7 +78,7 @@ class CaptureActivity : Activity() {
             finish()
         })
         list.clear()
-        if (isContinuous){
+        if (isContinuous) {
             number_layout!!.visibility = View.GONE
             barcode_layout!!.visibility = View.VISIBLE
             items_layout!!.visibility = View.VISIBLE
@@ -94,14 +94,14 @@ class CaptureActivity : Activity() {
 
         add_button!!.setOnClickListener({
             var barcodeNumber = barcode_number!!.text.toString()
-            if(formatedRefNumber.contains(barcodeNumber)  && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+            if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
                 if (isBeep) {
                     beepManager.playBeepSound()
                 }
                 lastBarcode = barcodeNumber
                 list.add(barcodeNumber)
                 scanned_items!!.text = list.size.toString()
-            }else{
+            } else {
                 Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
             }
         })
@@ -113,19 +113,19 @@ class CaptureActivity : Activity() {
                     result?.text?.let {
                         val now = System.currentTimeMillis()
                         if (now - lastTime < interval && lastBarcode == it) {
-                            //Toast.makeText(this@CaptureActivity, "Item already added", Toast.LENGTH_SHORT).show()
+                            // Toast.makeText(this@CaptureActivity, "Item already added", Toast.LENGTH_SHORT).show()
                             return
                         }
                         lastBarcode = it
                         lastTime = System.currentTimeMillis()
-                        if(results.contains(it) && !list.contains(it)) {
+                        if (results.contains(it) && !list.contains(it)) {
 
                             if (isBeep) {
                                 beepManager.playBeepSound()
                             }
                             list.add(it)
                             scanned_items!!.text = list.size.toString()
-                        }else{
+                        } else {
                             Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -177,6 +177,4 @@ class CaptureActivity : Activity() {
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         return scannerView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event)
     }
-
-
 }

@@ -98,7 +98,7 @@ class CaptureActivity : Activity() {
 
         add_button!!.setOnClickListener({
             var barcodeNumber = barcode_number!!.text.toString()
-            if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+            if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
                 if (isBeep) {
                     beepManager.playBeepSound()
                 }

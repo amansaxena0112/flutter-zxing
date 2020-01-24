@@ -38,6 +38,7 @@ class CaptureActivity : Activity() {
         val isBeep = intent.getBooleanExtra(Intents.Scan.BEEP_ENABLED, true)
         val interval = intent.extras[keyContinuousInterval] as? Int ?: 1000
         val refNumber = intent.extras[keyRefNumber] as String
+        val orderNumber = intent.extras[keyOrderNumber] as String
         val scannedNumber = intent.extras[keyScannedNumber] as String
         var lastTime = System.currentTimeMillis()
         val beepManager = BeepManager(this)
@@ -55,10 +56,13 @@ class CaptureActivity : Activity() {
         add_button = findViewById(R.id.add_button)
         back_layout = findViewById(R.id.back_layout)
         var formatRefNumber = refNumber.replace("[", "")
+        var formatOrderNumber = orderNumber.replace("[", "")
         var formatScannedNumber = scannedNumber.replace("[", "")
         var formatedRefNumber = formatRefNumber.replace("]", "")
+        var formatedOrderNumber = formatOrderNumber.replace("]", "")
         var formatedScannedNumber = formatScannedNumber.replace("]", "")
         var results: List<String> = formatedRefNumber.split(",").map { it.trim() }
+        var orderResults: List<String> = formatedOrderNumber.split(",").map { it.trim() }
         var scannedResults: List<String> = formatedScannedNumber.split(",").map { it.trim() }
 
         back_layout!!.setOnClickListener({
@@ -118,7 +122,7 @@ class CaptureActivity : Activity() {
                         }
                         lastBarcode = it
                         lastTime = System.currentTimeMillis()
-                        if (results.contains(it) && !list.contains(it)) {
+                        if ((results.contains(it) || orderResults.contains(it)) && !list.contains(it)) {
 
                             if (isBeep) {
                                 beepManager.playBeepSound()

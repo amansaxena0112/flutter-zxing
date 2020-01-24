@@ -10,6 +10,7 @@ class Fzxing {
     bool isShipment = false,
     int continuousInterval = 1000,
     List<String> refNumber,
+    List<String> orderNumber,
     List<String> scannedRefNumber,
   }) async {
     final List barcodes = await _channel.invokeMethod(
@@ -20,6 +21,7 @@ class Fzxing {
           ..['isShipment'] = isShipment
           ..['continuousInterval'] = continuousInterval
           ..['refNumber'] = refNumber
+          ..['orderNumber'] = orderNumber
           ..['scannedRefNumber'] = scannedRefNumber);
     return barcodes.map((it) => it as String).toList();
   }

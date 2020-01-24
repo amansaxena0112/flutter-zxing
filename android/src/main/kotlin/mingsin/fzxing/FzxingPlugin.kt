@@ -19,6 +19,7 @@ const val keyScan = "scan"
 const val keyIsBeep = "isBeep"
 const val keyContinuousInterval = "continuousInterval"
 const val keyRefNumber = "refNumber"
+const val keyOrderNumber = "orderNumber"
 const val keyScannedNumber = "scannedRefNumber"
 
 class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
@@ -49,8 +50,9 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
         val isShipment = argumentsMap[keyIsShipment] as? Boolean ?: false
         val scanInterval = argumentsMap[keyContinuousInterval] as? Int ?: 1000
         val refNumber = argumentsMap[keyRefNumber] as? List<String> ?: ""
+        val orderNumber = argumentsMap[keyOrderNumber] as? List<String> ?: ""
         val scannedNumber = argumentsMap[keyScannedNumber] as? List<String> ?: ""
-        val config = Config(isBeep, isContinuous, isShipment , scanInterval, refNumber.toString(),scannedNumber.toString())
+        val config = Config(isBeep, isContinuous, isShipment , scanInterval, refNumber.toString(),scannedNumber.toString(), orderNumber.toString())
         Log.d(keyIsBeep, isBeep.toString())
         Log.d(keyIsContinuous, isContinuous.toString())
         Log.d(keyIsShipment, isShipment.toString())
@@ -86,6 +88,7 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
                     .addExtra(keyIsContinuous, config.isContinuous)
                     .addExtra(keyContinuousInterval, config.scanInterval)
                     .addExtra(keyRefNumber, config.refNumber)
+                    .addExtra(keyOrderNumber, config.orderNumber)
                     .addExtra(keyScannedNumber, config.scannedNumber)
                     .initiateScan()
         }else {
@@ -96,6 +99,7 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
                     .addExtra(keyIsContinuous, config.isContinuous)
                     .addExtra(keyContinuousInterval, config.scanInterval)
                     .addExtra(keyRefNumber, config.refNumber)
+                    .addExtra(keyOrderNumber, config.orderNumber)
                     .addExtra(keyScannedNumber, config.scannedNumber)
                     .initiateScan()
         }
@@ -111,6 +115,6 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
 
     }
 
-    internal data class Config(val isBeep: Boolean, val isContinuous: Boolean, val isShipment: Boolean, val scanInterval: Int, val refNumber: String, val scannedNumber: String)
+    internal data class Config(val isBeep: Boolean, val isContinuous: Boolean, val isShipment: Boolean, val scanInterval: Int, val refNumber: String, val scannedNumber: String, val orderNumber: String)
 
 }

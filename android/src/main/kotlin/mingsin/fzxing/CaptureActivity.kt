@@ -35,6 +35,7 @@ class CaptureActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_capture)
         val isContinuous = intent.extras[keyIsContinuous] as Boolean
+        val isBlowhorn = intent.extras[keyIsBlowhorn] as Boolean
         val isBeep = intent.getBooleanExtra(Intents.Scan.BEEP_ENABLED, true)
         val interval = intent.extras[keyContinuousInterval] as? Int ?: 1000
         val refNumber = intent.extras[keyRefNumber] as String
@@ -72,9 +73,16 @@ class CaptureActivity : Activity() {
         continue_button!!.setOnClickListener({
             if (!isContinuous) {
                 var mobile_no = mobile_number!!.text.toString()
-                if (mobile_no.length < 10) {
-                    Toast.makeText(this, "Enter 10 digit mobile number", Toast.LENGTH_SHORT).show()
-                    return@setOnClickListener
+                if(isBlowhorn) {
+                    if (mobile_no.length < 10) {
+                        Toast.makeText(this, "Enter 10 digit mobile number", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                }else{
+                    if (mobile_no.length < 9) {
+                        Toast.makeText(this, "Enter 9 or 10 digit mobile number", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
                 }
                 list.add(mobile_no)
             }

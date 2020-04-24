@@ -54,16 +54,18 @@
 
             <com.journeyapps.barcodescanner.DecoratedBarcodeView
                 android:id="@+id/scanner_view"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="40dp"
+                android:layout_above="@id/bottom_layout"
                 android:layout_centerHorizontal="true"/>
 
             <RelativeLayout
                 android:id="@+id/bottom_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/scanner_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="29dp"
                 android:layout_marginRight="29dp">

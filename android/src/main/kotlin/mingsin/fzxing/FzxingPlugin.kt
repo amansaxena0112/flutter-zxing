@@ -21,6 +21,7 @@ const val keyContinuousInterval = "continuousInterval"
 const val keyRefNumber = "refNumber"
 const val keyOrderNumber = "orderNumber"
 const val keyScannedNumber = "scannedRefNumber"
+const val keyIsBlowhorn = "isBlowhorn"
 
 class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
 
@@ -47,14 +48,16 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
         val argumentsMap = call.arguments as Map<*, *>
         val isBeep = argumentsMap[keyIsBeep] as? Boolean ?: true
         val isContinuous = argumentsMap[keyIsContinuous] as? Boolean ?: false
+        val isBlowhorn = argumentsMap[keyIsBlowhorn] as? Boolean ?: true
         val isShipment = argumentsMap[keyIsShipment] as? Boolean ?: false
         val scanInterval = argumentsMap[keyContinuousInterval] as? Int ?: 1000
         val refNumber = argumentsMap[keyRefNumber] as? List<String> ?: ""
         val orderNumber = argumentsMap[keyOrderNumber] as? List<String> ?: ""
         val scannedNumber = argumentsMap[keyScannedNumber] as? List<String> ?: ""
-        val config = Config(isBeep, isContinuous, isShipment , scanInterval, refNumber.toString(),scannedNumber.toString(), orderNumber.toString())
+        val config = Config(isBeep, isContinuous, isShipment , scanInterval, refNumber.toString(),scannedNumber.toString(), orderNumber.toString(), isBlowhorn)
         Log.d(keyIsBeep, isBeep.toString())
         Log.d(keyIsContinuous, isContinuous.toString())
+        Log.d(keyIsBlowhorn, isBlowhorn.toString())
         Log.d(keyIsShipment, isShipment.toString())
         Log.d(keyScannedNumber, scannedNumber.toString())
         Log.d(keyScannedNumber, argumentsMap.toString())
@@ -97,6 +100,7 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
                     .setCaptureActivity(CaptureActivity::class.java)
                     .setBeepEnabled(config.isBeep)
                     .addExtra(keyIsContinuous, config.isContinuous)
+                    .addExtra(keyIsBlowhorn, config.isBlowhorn)
                     .addExtra(keyContinuousInterval, config.scanInterval)
                     .addExtra(keyRefNumber, config.refNumber)
                     .addExtra(keyOrderNumber, config.orderNumber)
@@ -115,6 +119,6 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
 
     }
 
-    internal data class Config(val isBeep: Boolean, val isContinuous: Boolean, val isShipment: Boolean, val scanInterval: Int, val refNumber: String, val scannedNumber: String, val orderNumber: String)
+    internal data class Config(val isBeep: Boolean, val isContinuous: Boolean, val isShipment: Boolean, val scanInterval: Int, val refNumber: String, val scannedNumber: String, val orderNumber: String, , val isBlowhorn: Boolean)
 
 }

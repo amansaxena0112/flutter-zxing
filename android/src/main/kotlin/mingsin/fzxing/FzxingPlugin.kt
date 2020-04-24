@@ -119,6 +119,6 @@ class FzxingPlugin(private val registrar: Registrar) : MethodCallHandler {
 
     }
 
-    internal data class Config(val isBeep: Boolean, val isContinuous: Boolean, val isShipment: Boolean, val scanInterval: Int, val refNumber: String, val scannedNumber: String, val orderNumber: String, , val isBlowhorn: Boolean)
+    internal data class Config(val isBeep: Boolean, val isContinuous: Boolean, val isShipment: Boolean, val scanInterval: Int, val refNumber: String, val scannedNumber: String, val orderNumber: String, val isBlowhorn: Boolean)
 
 }

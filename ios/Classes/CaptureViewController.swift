@@ -49,7 +49,7 @@ class CaptureViewController: LBXScanViewController  {
             let beepFile = Bundle(url: bundleURL)?.url(forResource: "beep", withExtension: "mp3")
             do {
                 player = try AVAudioPlayer(contentsOf: beepFile! )
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
                 try AVAudioSession.sharedInstance().setActive(true)
                 player.volume = 0.5
                 player.prepareToPlay()

@@ -14,6 +14,7 @@ import com.google.zxing.client.android.Intents
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DecoratedBarcodeView
+import java.util.*
 
 class ShipmentCaptureActivity : Activity() {
     private var lastBarcode = "INVALID_STRING_STATE"
@@ -94,17 +95,31 @@ class ShipmentCaptureActivity : Activity() {
             }
         })
         barcode_number!!.addTextChangedListener(object : TextWatcher {
+            private var timer: Timer = Timer()
+            private val DELAY: Long = 500 // milliseconds
+
             override fun afterTextChanged(s: Editable?) {
-                var barcodeNumber = barcode_number!!.text.toString()
-                if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
-                    if (isBeep) {
-                        beepManager.playBeepSound()
-                    }
-                    lastBarcode = barcodeNumber
-                    list.add(barcodeNumber)
-                } else {
-                    Toast.makeText(this@ShipmentCaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
-                }
+                timer.cancel()
+                timer = Timer()
+                timer.schedule(
+                        object : TimerTask() {
+                            override fun run() {
+                                var barcodeNumber = barcode_number!!.text.toString()
+                                if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+                                    if (isBeep) {
+                                        beepManager.playBeepSound()
+                                    }
+                                    lastBarcode = barcodeNumber
+                                    list.add(barcodeNumber)
+                                } else {
+                                    runOnUiThread {
+                                        Toast.makeText(this@ShipmentCaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                        },
+                        DELAY
+                )
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

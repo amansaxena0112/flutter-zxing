@@ -16,6 +16,7 @@ import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DecoratedBarcodeView
 import java.util.*
 
+
 class CaptureActivity : Activity() {
     private var lastBarcode = "INVALID_STRING_STATE"
     private lateinit var scannerView: DecoratedBarcodeView
@@ -140,7 +141,9 @@ class CaptureActivity : Activity() {
                                    scanned_items!!.text = list.size.toString()
                                    barcode_number!!.requestFocus()
                                } else {
-                                   Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+                                   runOnUiThread {
+                                       Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+                                   }
                                }
                             }
                         },

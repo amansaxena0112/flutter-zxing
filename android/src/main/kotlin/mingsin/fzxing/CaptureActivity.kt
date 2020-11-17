@@ -149,7 +149,7 @@ class CaptureActivity : Activity() {
 //                        DELAY
 //                )
                 var barcodeNumber = barcode_number!!.text.toString()
-                if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+                if (barcodeNumber.isNotEmpty() && formatedRefNumber == barcodeNumber && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
                     if (isBeep) {
                         beepManager.playBeepSound()
                     }

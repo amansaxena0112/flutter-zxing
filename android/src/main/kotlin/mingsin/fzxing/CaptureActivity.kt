@@ -126,39 +126,41 @@ class CaptureActivity : Activity() {
             private val DELAY: Long = 500 // milliseconds
 
             override fun afterTextChanged(s: Editable?) {
-//                timer.cancel()
-//                timer = Timer()
-//                timer.schedule(
-//                        object : TimerTask() {
-//                           override fun run() {
-//                               var barcodeNumber = barcode_number!!.text.toString()
-//                               if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
-//                                   if (isBeep) {
-//                                       beepManager.playBeepSound()
-//                                   }
-//                                   lastBarcode = barcodeNumber
-//                                   list.add(barcodeNumber)
-//                                   scanned_items!!.text = list.size.toString()
-//                               } else {
-//                                   runOnUiThread {
-//                                       Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
-//                                   }
-//                               }
-//                            }
-//                        },
-//                        DELAY
-//                )
-                var barcodeNumber = barcode_number!!.text.toString()
-                if (barcodeNumber.isNotEmpty() && formatedRefNumber == barcodeNumber && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
-                    if (isBeep) {
-                        beepManager.playBeepSound()
-                    }
-                    lastBarcode = barcodeNumber
-                    list.add(barcodeNumber)
-                    scanned_items!!.text = list.size.toString()
-                } else {
-                    Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
-                }
+                timer.cancel()
+                timer = Timer()
+                timer.schedule(
+                        object : TimerTask() {
+                           override fun run() {
+                               var barcodeNumber = barcode_number!!.text.toString()
+                               if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+                                   runOnUiThread{
+                                       if (isBeep) {
+                                           beepManager.playBeepSound()
+                                       }
+                                       lastBarcode = barcodeNumber
+                                       list.add(barcodeNumber)
+                                       scanned_items!!.text = list.size.toString()
+                                   }
+                               } else {
+                                   runOnUiThread {
+                                       Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+                                   }
+                               }
+                            }
+                        },
+                        DELAY
+                )
+//                var barcodeNumber = barcode_number!!.text.toString()
+//                if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+//                    if (isBeep) {
+//                        beepManager.playBeepSound()
+//                    }
+//                    lastBarcode = barcodeNumber
+//                    list.add(barcodeNumber)
+//                    scanned_items!!.text = list.size.toString()
+//                } else {
+//                    Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+//                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

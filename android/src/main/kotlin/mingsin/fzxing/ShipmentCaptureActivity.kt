@@ -22,7 +22,7 @@ class ShipmentCaptureActivity : Activity() {
     private var mobile_number: EditText ? = null
     private var barcode_number: EditText ? = null
     private var title_text: TextView ? = null
-    private var add_button: LinearLayout ? = null
+    //private var add_button: LinearLayout ? = null
     private var back_layout: LinearLayout ? = null
     private var number_layout: LinearLayout ? = null
     private var barcode_layout: LinearLayout ? = null
@@ -49,7 +49,7 @@ class ShipmentCaptureActivity : Activity() {
         bottom_layout = findViewById(R.id.bottom_layout)
         number_layout = findViewById(R.id.number_layout)
         barcode_layout = findViewById(R.id.barcode_layout)
-        add_button = findViewById(R.id.add_button)
+        //add_button = findViewById(R.id.add_button)
         back_layout = findViewById(R.id.back_layout)
         var formatRefNumber = refNumber.replace("[", "")
         var formatScannedNumber = scannedNumber.replace("[", "")
@@ -82,18 +82,18 @@ class ShipmentCaptureActivity : Activity() {
             title_text!!.text = "SCAN ITEMS"
         }
 
-        add_button!!.setOnClickListener({
-            var barcodeNumber = barcode_number!!.text.toString()
-            if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
-                if (isBeep) {
-                    beepManager.playBeepSound()
-                }
-                lastBarcode = barcodeNumber
-                list.add(barcodeNumber)
-            } else {
-                Toast.makeText(this@ShipmentCaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
-            }
-        })
+//        add_button!!.setOnClickListener({
+//            var barcodeNumber = barcode_number!!.text.toString()
+//            if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+//                if (isBeep) {
+//                    beepManager.playBeepSound()
+//                }
+//                lastBarcode = barcodeNumber
+//                list.add(barcodeNumber)
+//            } else {
+//                Toast.makeText(this@ShipmentCaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+//            }
+//        })
         barcode_number!!.addTextChangedListener(object : TextWatcher {
             private var timer: Timer = Timer()
             private val DELAY: Long = 500 // milliseconds
@@ -105,12 +105,14 @@ class ShipmentCaptureActivity : Activity() {
                         object : TimerTask() {
                             override fun run() {
                                 var barcodeNumber = barcode_number!!.text.toString()
-                                if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
-                                    if (isBeep) {
-                                        beepManager.playBeepSound()
+                                if (results.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+                                    runOnUiThread {
+                                        if (isBeep) {
+                                            beepManager.playBeepSound()
+                                        }
+                                        lastBarcode = barcodeNumber
+                                        list.add(barcodeNumber)
                                     }
-                                    lastBarcode = barcodeNumber
-                                    list.add(barcodeNumber)
                                 } else {
                                     runOnUiThread {
                                         Toast.makeText(this@ShipmentCaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()

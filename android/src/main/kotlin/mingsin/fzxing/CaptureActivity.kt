@@ -26,7 +26,7 @@ class CaptureActivity : Activity() {
     private var title_text: TextView ? = null
     private var scanned_items: TextView ? = null
     private var items_layout: LinearLayout ? = null
-    private var add_button: LinearLayout ? = null
+    //private var add_button: LinearLayout ? = null
     private var back_layout: LinearLayout ? = null
     private var number_layout: LinearLayout ? = null
     private var barcode_layout: LinearLayout ? = null
@@ -58,7 +58,7 @@ class CaptureActivity : Activity() {
         items_layout = findViewById(R.id.items_layout)
         number_layout = findViewById(R.id.number_layout)
         barcode_layout = findViewById(R.id.barcode_layout)
-        add_button = findViewById(R.id.add_button)
+        //add_button = findViewById(R.id.add_button)
         back_layout = findViewById(R.id.back_layout)
         var formatRefNumber = refNumber.replace("[", "")
         var formatOrderNumber = orderNumber.replace("[", "")
@@ -108,19 +108,19 @@ class CaptureActivity : Activity() {
             title_text!!.text = "SCAN ITEMS"
         }
 
-        add_button!!.setOnClickListener({
-            var barcodeNumber = barcode_number!!.text.toString()
-            if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
-                if (isBeep) {
-                    beepManager.playBeepSound()
-                }
-                lastBarcode = barcodeNumber
-                list.add(barcodeNumber)
-                scanned_items!!.text = list.size.toString()
-            } else {
-                Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
-            }
-        })
+//        add_button!!.setOnClickListener({
+//            var barcodeNumber = barcode_number!!.text.toString()
+//            if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+//                if (isBeep) {
+//                    beepManager.playBeepSound()
+//                }
+//                lastBarcode = barcodeNumber
+//                list.add(barcodeNumber)
+//                scanned_items!!.text = list.size.toString()
+//            } else {
+//                Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+//            }
+//        })
         barcode_number!!.addTextChangedListener(object : TextWatcher {
             private var timer: Timer = Timer()
             private val DELAY: Long = 500 // milliseconds

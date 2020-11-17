@@ -139,7 +139,6 @@ class CaptureActivity : Activity() {
                                    lastBarcode = barcodeNumber
                                    list.add(barcodeNumber)
                                    scanned_items!!.text = list.size.toString()
-                                   barcode_number!!.requestFocus()
                                } else {
                                    runOnUiThread {
                                        Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()

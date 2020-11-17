@@ -132,7 +132,7 @@ class CaptureActivity : Activity() {
                         object : TimerTask() {
                            override fun run() {
                                var barcodeNumber = barcode_number!!.text.toString()
-                               if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+                               if (barcodeNumber.isNotEmpty() && (results.contains(barcodeNumber) || orderResults.contains(barcodeNumber)) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
                                    runOnUiThread{
                                        if (isBeep) {
                                            beepManager.playBeepSound()
@@ -140,6 +140,8 @@ class CaptureActivity : Activity() {
                                        lastBarcode = barcodeNumber
                                        list.add(barcodeNumber)
                                        scanned_items!!.text = list.size.toString()
+                                       barcode_number!!.text.clear()
+                                       barcode_number!!.requestFocus()
                                    }
                                } else {
                                    runOnUiThread {

@@ -95,12 +95,6 @@ class ShipmentCaptureActivity : Activity() {
         })
         barcode_number!!.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 var barcodeNumber = barcode_number!!.text.toString()
                 if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
                     if (isBeep) {
@@ -111,6 +105,12 @@ class ShipmentCaptureActivity : Activity() {
                 } else {
                     Toast.makeText(this@ShipmentCaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
                 }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
         scannerView.setStatusText("")

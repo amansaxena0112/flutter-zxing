@@ -3,6 +3,8 @@ package mingsin.fzxing
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
 import android.widget.*
@@ -89,6 +91,26 @@ class ShipmentCaptureActivity : Activity() {
                 list.add(barcodeNumber)
             } else {
                 Toast.makeText(this@ShipmentCaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+            }
+        })
+        barcode_number!!.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                var barcodeNumber = barcode_number!!.text.toString()
+                if (formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+                    if (isBeep) {
+                        beepManager.playBeepSound()
+                    }
+                    lastBarcode = barcodeNumber
+                    list.add(barcodeNumber)
+                } else {
+                    Toast.makeText(this@ShipmentCaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+                }
             }
         })
         scannerView.setStatusText("")

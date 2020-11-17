@@ -232,29 +232,21 @@
                         android:layout_marginTop="5dp"
                         android:weightSum="5">
 
-                        <RelativeLayout
+                        <EditText
+                            android:id="@+id/barcode_number"
                             android:layout_width="0dp"
                             android:layout_height="40dp"
                             android:background="@drawable/edit_bg"
+                            android:textColor="@color/White"
+                            android:focusedByDefault="true"
+                            android:textSize="14sp"
+                            android:maxLines="1"
+                            android:singleLine="true"
                             android:paddingStart="5dp"
                             android:layout_weight="4"
                             android:focusable="true"
                             android:layout_marginEnd="10dp"
-                            android:focusableInTouchMode="true"
-                            android:focusedByDefault="true">
-
-                            <EditText
-                                android:id="@+id/barcode_number"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@null"
-                                android:textColor="@color/White"
-                                android:focusedByDefault="false"
-                                android:textSize="14sp"
-                                android:maxLines="1"
-                                android:singleLine="true" />
-
-                        </RelativeLayout>
+                            android:focusableInTouchMode="true"/>
 
                         <LinearLayout
                             android:id="@+id/add_button"

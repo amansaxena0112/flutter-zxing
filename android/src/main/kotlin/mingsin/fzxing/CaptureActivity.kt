@@ -14,6 +14,7 @@ import com.google.zxing.client.android.Intents
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.DecoratedBarcodeView
+import java.util.*
 
 class CaptureActivity : Activity() {
     private var lastBarcode = "INVALID_STRING_STATE"
@@ -75,12 +76,12 @@ class CaptureActivity : Activity() {
         continue_button!!.setOnClickListener({
             if (!isContinuous) {
                 var mobile_no = mobile_number!!.text.toString()
-                if(isBlowhorn) {
+                if (isBlowhorn) {
                     if (mobile_no.length < 10) {
                         Toast.makeText(this, "Enter 10 digit mobile number", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
                     }
-                }else{
+                } else {
                     if (mobile_no.length < 9) {
                         Toast.makeText(this, "Enter 9 or 10 digit mobile number", Toast.LENGTH_SHORT).show()
                         return@setOnClickListener
@@ -120,27 +121,40 @@ class CaptureActivity : Activity() {
             }
         })
         barcode_number!!.addTextChangedListener(object : TextWatcher {
+            private var timer: Timer = Timer()
+            private val DELAY: Long = 500 // milliseconds
+
             override fun afterTextChanged(s: Editable?) {
-                var barcodeNumber = barcode_number!!.text.toString()
-                if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
-                    if (isBeep) {
-                        beepManager.playBeepSound()
-                    }
-                    lastBarcode = barcodeNumber
-                    list.add(barcodeNumber)
-                    scanned_items!!.text = list.size.toString()
-                } else {
-                    Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
-                }
+                timer.cancel()
+                timer = Timer()
+                timer.schedule(
+                        object : TimerTask() {
+                           override fun run() {
+                               var barcodeNumber = barcode_number!!.text.toString()
+                               if (barcodeNumber.isNotEmpty() && formatedRefNumber.contains(barcodeNumber) && lastBarcode != barcodeNumber && !list.contains(barcodeNumber)) {
+                                   if (isBeep) {
+                                       beepManager.playBeepSound()
+                                   }
+                                   lastBarcode = barcodeNumber
+                                   list.add(barcodeNumber)
+                                   scanned_items!!.text = list.size.toString()
+                                   barcode_number!!.requestFocus()
+                               } else {
+                                   Toast.makeText(this@CaptureActivity, "Enter valid package", Toast.LENGTH_SHORT).show()
+                               }
+                            }
+                        },
+                        DELAY
+                )
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
             }
         })
+
         scannerView.setStatusText("")
 
         if (isContinuous) {
